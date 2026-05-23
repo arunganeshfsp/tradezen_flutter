@@ -3,16 +3,20 @@ name: Build & Release
 on:
   push:
     tags:
-      - 'v*'           # triggers on v1.0.0, v1.2.3, etc.
-  workflow_dispatch:   # manual trigger from GitHub Actions tab
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   # ── Windows desktop ────────────────────────────────────────
   build-windows:
     name: Windows
     runs-on: windows-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -44,8 +48,12 @@ jobs:
   build-android:
     name: Android
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-java@v4
         with:

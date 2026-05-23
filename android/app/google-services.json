@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "450813522780",
+    "project_id": "tradezen-fa195",
+    "storage_bucket": "tradezen-fa195.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450813522780:android:de55f77ef310d2401c8799",
+        "android_client_info": {
+          "package_name": "com.prod.tradezen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEluEm6QSnL2ZumTisahNCr1gB7Lp29JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
