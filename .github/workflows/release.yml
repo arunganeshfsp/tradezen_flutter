@@ -5,12 +5,23 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to build'
+        required: true
+        default: 'android'
+        type: choice
+        options:
+          - android
+          - windows
+          - all
 
 jobs:
   # ── Windows desktop ────────────────────────────────────────
   build-windows:
     name: Windows
     runs-on: windows-latest
+    if: ${{ github.event_name == 'push' || inputs.platform == 'windows' || inputs.platform == 'all' }}
     permissions:
       contents: read
     steps:
@@ -48,6 +59,7 @@ jobs:
   build-android:
     name: Android
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || inputs.platform == 'android' || inputs.platform == 'all' }}
     permissions:
       contents: read
     steps:
@@ -65,9 +77,6 @@ jobs:
           flutter-version: '3.0.1'
           channel: 'stable'
           cache: true
-
-      - name: Install Android SDK 35
-        run: echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-35"
 
       - name: Get dependencies
         run: flutter pub get
