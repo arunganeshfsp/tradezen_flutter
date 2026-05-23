@@ -1,4 +1,4 @@
-package `in`.tradeze.tradezen_flutter
+package com.prod.tradezen
 
 import io.flutter.embedding.android.FlutterActivity
 
