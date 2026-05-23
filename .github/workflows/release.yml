@@ -90,6 +90,12 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Generate app icon
+        run: |
+          sudo apt-get install -y librsvg2-bin
+          rsvg-convert -w 1024 -h 1024 assets/icon.svg -o assets/icon.png
+          dart run flutter_launcher_icons
+
       - name: Build APK (release)
         run: flutter build apk --release --split-per-abi
 
@@ -103,7 +109,7 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          groups: testers
+          groups: owners
           file: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
           releaseNotes: "Build ${{ github.run_number }} — ${{ github.sha }}"
 
